@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
+// import { changeName } from './redux/modules/cat';
+import { changeName } from './redux/modules/catSlice';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  const cat = useSelector(state=>state.cat);
+  const dispatch = useDispatch();
+  console.log(cat);
+    return(
+     <div>
+      <p>{cat.name}</p>
+      <button onClick={()=> {
+      dispatch(changeName("루비"))
+      }}>이름 바꾸기</button>
+     </div>
   );
 }
+
+
+    
 
 export default App;
